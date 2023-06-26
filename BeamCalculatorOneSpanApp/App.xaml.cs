@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeamCalculatorOneSpanApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -17,7 +18,7 @@ namespace BeamCalculatorOneSpanApp
         {
             MainWindow = new MainWindow()
             {
-
+                DataContext = new ElementViewModel()
             };
             MainWindow.Show();
             base.OnStartup(e);
