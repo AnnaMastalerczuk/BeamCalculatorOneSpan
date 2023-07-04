@@ -1,4 +1,5 @@
 ﻿using BeamCalculatorOneSpanApp.Models.BeamInfo;
+using BeamCalculatorOneSpanApp.Stores;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,20 +13,14 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 {
     public class DimensionComponentViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        //private BeamDimension _beamDimension;
-        //public BeamDimension BeamDimension
-        //{
-        //    get { return _beamDimension; }
-        //    set 
-        //    {
-        //        _beamDimension = value;
-        //        OnPropertyChanged(nameof(BeamDimension));
-        //    }
-        //}
         private readonly ErrorsViewModel _errorsViewModel;
+        private readonly BeamDimensionStore _beamDimensionStore;
+
+        private BeamDimension beamDimension = new BeamDimension();
+
 
         //Dimensions
-        private string _cantileverLeft;
+        private string _cantileverLeft = "0";
         public string CantileverLeft
         {
             get
@@ -44,11 +39,14 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
                 OnPropertyChanged(nameof(CantileverLeft));
                 OnPropertyChanged(nameof(BeamLength));
+
+                beamDimension.CantileverLeft = int.Parse(_cantileverLeft);
+                _beamDimensionStore.BeamDimension = beamDimension;
             }
         }
 
 
-        private string _cantileverRight;
+        private string _cantileverRight = "0";
         public string CantileverRight
         {
             get
@@ -67,10 +65,14 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
                 OnPropertyChanged(nameof(CantileverRight));
                 OnPropertyChanged(nameof(BeamLength));
+
+                beamDimension.CantileverRight = int.Parse(_cantileverRight);
+                _beamDimensionStore.BeamDimension = beamDimension;
             }
         }
 
-        private string _spanOne;
+        private string _spanOne = "0";
+
         public string SpanOne
         {
             get
@@ -90,24 +92,35 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 OnPropertyChanged(nameof(SpanOne));
                 OnPropertyChanged(nameof(BeamLength));
 
+                beamDimension.SpanOne = int.Parse(_spanOne);
+                _beamDimensionStore.BeamDimension = beamDimension;
             }
         }
 
-        private int _beamLength;
+        private int _beamLength => int.Parse(CantileverRight) + int.Parse(CantileverRight) + int.Parse(SpanOne);
         public int BeamLength
         {
-            get { return int.Parse(CantileverRight) + int.Parse(CantileverRight) + int.Parse(SpanOne); }
+            get { return _beamLength; }
+            set
+            {
+                //_beamDimensionStore.BeamDimension = new BeamDimension(_beamLength);
+            }
 
         }
 
         public bool HasErrors => _errorsViewModel.HasErrors;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        public DimensionComponentViewModel()
+        public DimensionComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
             _errorsViewModel = new ErrorsViewModel();
             _errorsViewModel.ErrorsChanged += ErrorsViewModel_ErrorsChanged;
+
+            this._beamDimensionStore = beamDimensionStore; 
         }
+
+        //errors
+
         public IEnumerable GetErrors(string propertyName)
         {
             return _errorsViewModel.GetErrors(propertyName);

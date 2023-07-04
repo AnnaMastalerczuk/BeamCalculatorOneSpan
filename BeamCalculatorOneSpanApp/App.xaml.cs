@@ -1,4 +1,5 @@
-﻿using BeamCalculatorOneSpanApp.ViewModels;
+﻿using BeamCalculatorOneSpanApp.Stores;
+using BeamCalculatorOneSpanApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,11 +15,19 @@ namespace BeamCalculatorOneSpanApp
     /// </summary>
     public partial class App : Application
     {
+        private readonly BeamDimensionStore _beamDimensionStore;
+        private readonly TestStore _testStore;
+
+        public App()
+        {
+            _beamDimensionStore = new BeamDimensionStore();
+            _testStore = new TestStore();
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new ElementViewModel()
+                DataContext = new ElementViewModel(_beamDimensionStore, _testStore)
             };
             MainWindow.Show();
             base.OnStartup(e);
