@@ -10,30 +10,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Point = BeamCalculator.Models.Calculator.Point;
 
 namespace BeamCalculatorOneSpanApp.Commands
 {
     public class GenerateChartsCommand : CommandBase
     {
-        //private readonly CalculatorManager _calculatorManager;
+        private readonly CalculatorManager _calculatorManager;
         private readonly ElementViewModel _elementViewModel;
+        private readonly BeamDimensionStore _beamDimensionStore;
+        private readonly LoadPointListStore _loadPointListStore;
 
-        private readonly TestCalculator _testCalculator;
-        private readonly TestStore _testStore;
 
-        public GenerateChartsCommand(ElementViewModel elementViewModel, TestStore testStore)
+        public GenerateChartsCommand(ElementViewModel elementViewModel, BeamDimensionStore beamDimensionStore, LoadPointListStore loadPointListStore)
         {
-            //_calculatorManager = new CalculatorManager();
+            _calculatorManager = new CalculatorManager();
             _elementViewModel = elementViewModel;
-            _elementViewModel.PropertyChanged += OnViewModelPropertyChanged;
-
-            _testCalculator = new TestCalculator();
-            _testStore = testStore;
-
-
-
-
-
+            _beamDimensionStore = beamDimensionStore;
+            _loadPointListStore = loadPointListStore;
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -57,37 +51,29 @@ namespace BeamCalculatorOneSpanApp.Commands
         }
         public override void Execute(object? parameter)
         {
-
+            List<LoadPoint> loadPoint = _elementViewModel.LoadPointListComponentViewModel.ListLoadPoint.ToList();
+                //List<LoadPoint> loadPoint = _elementViewModel.ListLoadPoint.ToList();
+            List<LoadDistributed> loadDistributed = _elementViewModel.LoadDistributedListComponentViewModel.ListLoadDistributed.ToList();
+                //List<LoadDistributed> loadDistributed = _elementViewModel.ListLoadDistributed.ToList();
             Element element = _elementViewModel.BeamPickerComponentViewModel.SelectedElement;
-
-            string nazwa = _testCalculator.Test(element);
-            TestItem testItem = new TestItem(nazwa);
+                //Element element = _elementViewModel.SelectedElement;
+            BeamDimension beamData = _beamDimensionStore.BeamDimension;
+            //BeamData beamData = new BeamData(int.Parse(_elementViewModel.CantileverLeft), int.Parse(_elementViewModel.CantileverRight), int.Parse(_elementViewModel.SpanOne));
 
             try
             {
-                _testStore.TestItem = testItem;
+                List<Point> listOfPointsT = new List<Point>();
+                List<Point> listOfPointsM = new List<Point>();
+
+                listOfPointsT = _calculatorManager.CalculateTForces(element, beamData, loadPoint, loadDistributed);
+                listOfPointsM = _calculatorManager.CalculateMForces(element, beamData, loadPoint, loadDistributed);
+                _loadPointListStore.Save(listOfPointsT, listOfPointsM);
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               
+                MessageBox.Show("Błąd. Podaj dane ponownie");
             }
-            
-
-            //List<LoadPoint> loadPoint = _elementViewModel.ListLoadPoint.ToList();
-            //List<LoadDistributed> loadDistributed = _elementViewModel.ListLoadDistributed.ToList();
-            //Element element = _elementViewModel.SelectedElement;
-            //BeamData beamData = new BeamData(int.Parse(_elementViewModel.CantileverLeft), int.Parse(_elementViewModel.CantileverRight), int.Parse(_elementViewModel.SpanOne));
-
-            //try
-            //{
-
-            //    _calculatorManager.Calculate(element, beamData, loadPoint, loadDistributed);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Błąd. Podaj dane ponownie");
-            //}
         }
     }
 }

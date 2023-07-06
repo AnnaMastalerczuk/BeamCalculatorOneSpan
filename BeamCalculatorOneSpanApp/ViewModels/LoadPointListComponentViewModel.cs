@@ -18,8 +18,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         //public string BeamLength => (_beamDimensionStore.BeamDimension?.SpanOne.ToString() ?? "100");
         public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString() ?? "50";
 
-        public string MyProperty => "jjjj";
-
 
         private ObservableCollection<LoadPoint> _listLoadPoint;
         public ObservableCollection<LoadPoint> ListLoadPoint

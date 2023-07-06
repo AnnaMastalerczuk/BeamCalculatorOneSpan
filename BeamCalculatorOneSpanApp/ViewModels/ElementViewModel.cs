@@ -16,6 +16,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         public BeamPickerComponentViewModel BeamPickerComponentViewModel { get; }
         public DimensionComponentViewModel DimensionComponentViewModel { get; }
         public LoadPointListComponentViewModel LoadPointListComponentViewModel { get; }
+        public LoadDistributedListComponentViewModel LoadDistributedListComponentViewModel { get; }
         public ResultViewComponentViewModel ResultViewComponentViewModel { get; }
 
         public ICommand GenerateChartsCommand { get; }
@@ -28,14 +29,15 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         }
 
-        public ElementViewModel(BeamDimensionStore _beamDimensionStore, TestStore testStore)
+        public ElementViewModel(BeamDimensionStore _beamDimensionStore, LoadPointListStore _loadPointListStore)
         {
             BeamPickerComponentViewModel = new BeamPickerComponentViewModel();
             DimensionComponentViewModel = new DimensionComponentViewModel(_beamDimensionStore);
             LoadPointListComponentViewModel = new LoadPointListComponentViewModel(_beamDimensionStore);
-            ResultViewComponentViewModel = new ResultViewComponentViewModel(testStore);
+            LoadDistributedListComponentViewModel = new LoadDistributedListComponentViewModel();
+            ResultViewComponentViewModel = new ResultViewComponentViewModel(_loadPointListStore);
 
-            GenerateChartsCommand = new GenerateChartsCommand(this, testStore);
+            GenerateChartsCommand = new GenerateChartsCommand(this, _beamDimensionStore, _loadPointListStore);
            
 
         }
