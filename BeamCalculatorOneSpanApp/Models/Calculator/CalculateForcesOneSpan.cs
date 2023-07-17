@@ -47,7 +47,7 @@ namespace BeamCalculator.Models.Calculator
             {
                 double value = CalculateV1Value(i, reactionsList, beamData) + CalculateV2Value(i, reactionsList, beamData)
                     - CalculateQValue(i, loadDistributed) - CalculatePValue(i, loadPoint);
-                Point point = new Point(i, value);
+                Point point = new Point(i, Math.Round(value,2));
                 ListOfPointsT.Add(point);
             }
 
@@ -63,7 +63,7 @@ namespace BeamCalculator.Models.Calculator
             {
                 double value = -(CalculateV1MomentValue(i, reactionsList, beamData) + CalculateV2MomentValue(i, reactionsList, beamData)
                     - CalculatePMomentValue(i, loadPoint) - CalculateQMomentValue(i, loadDistributed, beamData));
-                Point point = new Point(i, value);
+                Point point = new Point(i, Math.Round(value,2));
                 ListOfPointsM.Add(point);
             }
 

@@ -17,17 +17,19 @@ namespace BeamCalculatorOneSpanApp
     {
         private readonly BeamDimensionStore _beamDimensionStore;
         private readonly LoadPointListStore _loadPointListStore;
+        private readonly ElementStore _elementStore;
 
         public App()
         {
             _beamDimensionStore = new BeamDimensionStore();
             _loadPointListStore = new LoadPointListStore();
+            _elementStore = new ElementStore();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new ElementViewModel(_beamDimensionStore, _loadPointListStore)
+                DataContext = new ElementViewModel(_beamDimensionStore, _loadPointListStore, _elementStore)
             };
             MainWindow.Show();
             base.OnStartup(e);

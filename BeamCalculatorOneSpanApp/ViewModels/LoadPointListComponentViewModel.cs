@@ -14,9 +14,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
     public class LoadPointListComponentViewModel : ViewModelBase
     {
         private readonly BeamDimensionStore _beamDimensionStore;
-
-        //public string BeamLength => (_beamDimensionStore.BeamDimension?.SpanOne.ToString() ?? "100");
-        public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString() ?? "50";
+        public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString();
 
 
         private ObservableCollection<LoadPoint> _listLoadPoint;

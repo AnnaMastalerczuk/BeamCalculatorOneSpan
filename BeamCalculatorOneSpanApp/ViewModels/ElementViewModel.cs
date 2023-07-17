@@ -13,32 +13,24 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 {
     public class ElementViewModel : ViewModelBase
     {
+
         public BeamPickerComponentViewModel BeamPickerComponentViewModel { get; }
         public DimensionComponentViewModel DimensionComponentViewModel { get; }
         public LoadPointListComponentViewModel LoadPointListComponentViewModel { get; }
         public LoadDistributedListComponentViewModel LoadDistributedListComponentViewModel { get; }
-        public ResultViewComponentViewModel ResultViewComponentViewModel { get; }
+        public ResultViewComponentViewModel ResultViewComponentViewModel { get; set; }
 
         public ICommand GenerateChartsCommand { get; }
 
-
-        public void GenerateChartsButton()
+        public ElementViewModel(BeamDimensionStore _beamDimensionStore, LoadPointListStore _loadPointListStore, ElementStore _elementStore)
         {
-            //ActivateItem(new ResultViewComponentViewModel());
-            
-
-        }
-
-        public ElementViewModel(BeamDimensionStore _beamDimensionStore, LoadPointListStore _loadPointListStore)
-        {
-            BeamPickerComponentViewModel = new BeamPickerComponentViewModel();
+            BeamPickerComponentViewModel = new BeamPickerComponentViewModel(_elementStore);
             DimensionComponentViewModel = new DimensionComponentViewModel(_beamDimensionStore);
             LoadPointListComponentViewModel = new LoadPointListComponentViewModel(_beamDimensionStore);
             LoadDistributedListComponentViewModel = new LoadDistributedListComponentViewModel();
-            ResultViewComponentViewModel = new ResultViewComponentViewModel(_loadPointListStore);
+            ResultViewComponentViewModel = new ResultViewComponentViewModel(_loadPointListStore, _elementStore);
 
             GenerateChartsCommand = new GenerateChartsCommand(this, _beamDimensionStore, _loadPointListStore);
-           
 
         }
 

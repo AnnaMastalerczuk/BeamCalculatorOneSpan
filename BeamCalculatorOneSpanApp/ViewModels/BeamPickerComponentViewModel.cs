@@ -1,5 +1,6 @@
 ﻿using BeamCalculatorOneSpanApp.Models.BeamInfo;
 using BeamCalculatorOneSpanApp.Models.Loader;
+using BeamCalculatorOneSpanApp.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,12 +15,16 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         //private readonly FileLoader _fileLoader;
 
         //private List<Element> _listOfElements;
+        private ElementStore _elementStore;
         private ObservableCollection<Element> _listOfElements { get; set; }
 
-        public BeamPickerComponentViewModel() 
+        public BeamPickerComponentViewModel(Stores.ElementStore elementStore) 
         {
             FileLoader _fileLoader = new FileLoader();
             _listOfElements = new ObservableCollection<Element>(_fileLoader.getElementsList());
+
+            _elementStore = elementStore;
+
         }
 
 
@@ -40,6 +45,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 _selectedCategory = value;
                 OnPropertyChanged(nameof(SelectedCategory));
                 OnPropertyChanged(nameof(ListOfElementsWithSelectedCategory));
+
             }
         }
 
@@ -63,6 +69,8 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             {
                 _selectedElement = value;
                 OnPropertyChanged(nameof(SelectedElement));
+
+                _elementStore.Element = _selectedElement;
             }
         }
     }

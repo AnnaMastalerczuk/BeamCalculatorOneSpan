@@ -20,7 +20,7 @@ namespace BeamCalculatorOneSpanApp.Commands
         private readonly ElementViewModel _elementViewModel;
         private readonly BeamDimensionStore _beamDimensionStore;
         private readonly LoadPointListStore _loadPointListStore;
-
+     
 
         public GenerateChartsCommand(ElementViewModel elementViewModel, BeamDimensionStore beamDimensionStore, LoadPointListStore loadPointListStore)
         {
@@ -68,9 +68,11 @@ namespace BeamCalculatorOneSpanApp.Commands
                 listOfPointsT = _calculatorManager.CalculateTForces(element, beamData, loadPoint, loadDistributed);
                 listOfPointsM = _calculatorManager.CalculateMForces(element, beamData, loadPoint, loadDistributed);
                 _loadPointListStore.Save(listOfPointsT, listOfPointsM);
+                _elementViewModel.ResultViewComponentViewModel.UpdateValues();
+
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Błąd. Podaj dane ponownie");
             }

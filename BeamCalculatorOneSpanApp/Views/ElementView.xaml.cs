@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BeamCalculatorOneSpanApp.Stores;
+using BeamCalculatorOneSpanApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace BeamCalculatorOneSpanApp.Views
     /// </summary>
     public partial class ElementView : UserControl
     {
+
         public ElementView()
         {
             InitializeComponent();
         }
+
+ 
     }
 }
