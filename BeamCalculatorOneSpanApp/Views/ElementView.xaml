@@ -22,12 +22,15 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <components:BeamPickerComponent Grid.Column="0" 
                                             DataContext="{Binding BeamPickerComponentViewModel}"/>
             <components:DimensionComponent Grid.Column="1"
                                            DataContext="{Binding DimensionComponentViewModel}"/>
+                <Image Grid.Column="2" Width="500"
+                       Source="D:\Ania\Z dysku H\KURS PROGRAMOWANIA\C#\kurs_c#\BeamCalculatorOneSpan\resources\szkic.png" />
         </Grid>
 
         <Grid Grid.Row="1">

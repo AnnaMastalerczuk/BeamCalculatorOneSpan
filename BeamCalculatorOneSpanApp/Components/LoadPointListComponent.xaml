@@ -46,12 +46,12 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pozycja [mm]" 
+                <DataGridTextColumn Header="Pozycja (aPi) [mm]" 
                     Binding="{Binding Path=StartPosition, 
                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                     EditingElementStyle="{StaticResource errorStyle}"/>
 
-                <DataGridTextColumn Header="Obciążenie punktowe [kN]" 
+                <DataGridTextColumn Header="Obciążenie punktowe (Pi) [kN]" 
                     Binding="{Binding Path=LoadValue, 
                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                     EditingElementStyle="{StaticResource errorStyle}"/>

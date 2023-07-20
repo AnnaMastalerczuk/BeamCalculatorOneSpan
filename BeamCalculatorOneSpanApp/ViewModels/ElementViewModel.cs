@@ -17,6 +17,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         public BeamPickerComponentViewModel BeamPickerComponentViewModel { get; }
         public DimensionComponentViewModel DimensionComponentViewModel { get; }
         public LoadPointListComponentViewModel LoadPointListComponentViewModel { get; }
+
         public LoadDistributedListComponentViewModel LoadDistributedListComponentViewModel { get; }
         public ResultViewComponentViewModel ResultViewComponentViewModel { get; set; }
 
@@ -24,6 +25,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
             HasSelectedElement &&
             HasBeamLength;
+      
 
 
         private bool _hasSelectedElement;
@@ -73,7 +75,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
             BeamPickerComponentViewModel.PropertyChanged += OnBeamPickerComponentViewModelPropertyChanged;
             DimensionComponentViewModel.PropertyChanged += OnDimensionComponentViewModelPropertyChanged;
-
         }
 
         private void OnBeamPickerComponentViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -93,6 +94,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 HasBeamLength = DimensionComponentViewModel.BeamLength > 0;
             }
         }
+
 
     }
 }

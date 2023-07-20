@@ -46,15 +46,15 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pozycja początkowa [mm]" 
+                <DataGridTextColumn Header="Pozycja początkowa (aqi) [mm]" 
                                     Binding="{Binding Path=StartPosition,
                                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>
-                <DataGridTextColumn Header="Pozycja końcowa [mm]" 
+                <DataGridTextColumn Header="Pozycja końcowa (aqi+bi) [mm]" 
                                     Binding="{Binding Path=EndPosition,
                                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>
-                <DataGridTextColumn Header="Obciążenie równomiernie rozłożone [kN/m]" 
+                <DataGridTextColumn Header="Obciążenie równomiernie rozłożone (qi) [kN/m]" 
                                     Binding="{Binding Path=LoadValue,
                                     ValidatesOnDataErrors=True, Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>

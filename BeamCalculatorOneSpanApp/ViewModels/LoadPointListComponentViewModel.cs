@@ -4,6 +4,7 @@ using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -55,6 +56,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             ListLoadPoint.Add(new LoadPoint());
         }
 
+
         //ctor
         public LoadPointListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
@@ -76,6 +78,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         {
             OnPropertyChanged(nameof(BeamLength));
         }
+
 
     }
 }

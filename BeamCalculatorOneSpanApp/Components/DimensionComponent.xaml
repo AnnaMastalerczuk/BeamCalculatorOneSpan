@@ -38,6 +38,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -48,14 +49,16 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Left" Margin="10" Text="Podaj wymiary belki [mm]:" />
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Wspornik lewy" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Wspornik lewy (a)" />
         <TextBox Text="{Binding CantileverLeft, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="10" MinWidth="100"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="10" Text="Przęsło" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="10" Text="Przęsło (b)" />
         <TextBox Text="{Binding SpanOne, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="10" />
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="10" Text="Wspornik prawy" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="10" Text="Wspornik prawy (c)" />
         <TextBox Text="{Binding CantileverRight, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" Margin="10" />
 
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="10" Text="Długość całkowita (L)" />
+        <TextBlock Text="{Binding BeamLength}" Grid.Row="4" Grid.Column="1" Margin="10"/>
     </Grid>
 </UserControl>

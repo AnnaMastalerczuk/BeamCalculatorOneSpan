@@ -34,7 +34,7 @@
 
             <StackPanel Grid.Column="0" Margin="10">
                 <TextBlock TextAlignment="Center">Wykres sił poprzecznych</TextBlock>
-                <lvc:CartesianChart Height="300" Width="300">
+                <lvc:CartesianChart Height="450" Width="450">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="T [kN]" Values="{Binding ChartValuesT}"/>
                     </lvc:CartesianChart.Series>
@@ -57,7 +57,7 @@
 
             <StackPanel Grid.Column="1" Margin="10">
                 <TextBlock TextAlignment="Center">Wykres momentów zginających</TextBlock>
-                <lvc:CartesianChart Height="300" Width="300">
+                <lvc:CartesianChart Height="450" Width="450">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="M [kNm]" Values="{Binding ChartValuesM}"/>
                     </lvc:CartesianChart.Series>
