@@ -102,8 +102,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         {
             get { return _beamLength; }
             set
-            {
-                //_beamDimensionStore.BeamDimension = new BeamDimension(_beamLength);
+            {               
             }
 
         }
@@ -129,9 +128,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         private void ErrorsViewModel_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {
             ErrorsChanged?.Invoke(this, e);
-            //OnPropertyChanged(nameof(CanCreate));
         }
-
 
     }
 }

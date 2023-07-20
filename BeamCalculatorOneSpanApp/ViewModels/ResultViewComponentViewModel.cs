@@ -107,7 +107,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
             OnPropertyChanged(nameof(ListOfPointsTForces));
             OnPropertyChanged(nameof(ListOfPointsMForces));
-            //OnPropertyChanged(nameof(ListOfReactions));
             OnPropertyChanged(nameof(V1Value));
             OnPropertyChanged(nameof(V2Value));
 

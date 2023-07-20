@@ -8,13 +8,6 @@ namespace BeamCalculatorOneSpanApp.Models.BeamInfo
 {
     public class BeamDimension
     {
-        //public BeamDimension(int cantileverLeft, int cantileverRight, int spanOne)
-        //{
-        //    this.CantileverLeft = cantileverLeft;
-        //    this.CantileverRight = cantileverRight;
-        //    this.SpanOne = spanOne;
-        //}
-
         public BeamDimension()
         {
             

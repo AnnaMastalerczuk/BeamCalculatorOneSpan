@@ -12,9 +12,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 {
     public class BeamPickerComponentViewModel : ViewModelBase
     {
-        //private readonly FileLoader _fileLoader;
-
-        //private List<Element> _listOfElements;
         private ElementStore _elementStore;
         private ObservableCollection<Element> _listOfElements { get; set; }
 
@@ -24,9 +21,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _listOfElements = new ObservableCollection<Element>(_fileLoader.getElementsList());
 
             _elementStore = elementStore;
-
         }
-
 
         public List<string> CategoryNames
         {
@@ -45,7 +40,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 _selectedCategory = value;
                 OnPropertyChanged(nameof(SelectedCategory));
                 OnPropertyChanged(nameof(ListOfElementsWithSelectedCategory));
-
             }
         }
 

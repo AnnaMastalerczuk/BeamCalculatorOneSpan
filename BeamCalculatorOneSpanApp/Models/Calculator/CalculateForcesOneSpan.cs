@@ -13,30 +13,20 @@ namespace BeamCalculator.Models.Calculator
     public class CalculateForcesOneSpan
     {
         public int Length { get; set; }
-       // public List<Point> ListOfPointsT { get; }
-        //public List<Point> ListOfPointsM { get; }
-
-
-        //private int Length { get; set; }
-
         public CalculateForcesOneSpan()
         {
-            //ListOfPointsT = new List<Point>();
-            //ListOfPointsM = new List<Point>();
         }
 
         public List<Point> CalculateTForces(Dictionary<string, double> reactionsList, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed)
         {
             Length = beamData.CantileverRight + beamData.CantileverLeft + beamData.SpanOne;
             return CreateListOfPointsT(reactionsList, beamData, loadPoint, loadDistributed);
-            //CreateListOfPointsM(reactionsList, beamData, loadPoint, loadDistributed);
         }
 
         public List<Point> CalculateMForces(Dictionary<string, double> reactionsList, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed)
         {
             Length = beamData.CantileverRight + beamData.CantileverLeft + beamData.SpanOne;
             return CreateListOfPointsM(reactionsList, beamData, loadPoint, loadDistributed);
-            //CreateListOfPointsM(reactionsList, beamData, loadPoint, loadDistributed);
         }
 
         private List<Point> CreateListOfPointsT(Dictionary<string, double> reactionsList, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed)

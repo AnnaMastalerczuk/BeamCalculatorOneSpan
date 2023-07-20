@@ -1,6 +1,5 @@
 ﻿using BeamCalculator.Models.Calculator;
 using BeamCalculatorOneSpanApp.Models.BeamInfo;
-using BeamCalculatorOneSpanApp.Models.Calculator;
 using BeamCalculatorOneSpanApp.Stores;
 using BeamCalculatorOneSpanApp.ViewModels;
 using System;
@@ -29,30 +28,22 @@ namespace BeamCalculatorOneSpanApp.Commands
             _elementViewModel = elementViewModel;
             _beamDimensionStore = beamDimensionStore;
             _loadPointListStore = loadPointListStore;
+
+            _elementViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            //if (e.PropertyName == nameof(ElementViewModel.BeamPickerComponentViewModel.SelectedElement) || e.PropertyName == nameof(ElementViewModel.DimensionComponentViewModel.SpanOne)
-            //    || e.PropertyName == nameof(ElementViewModel.DimensionComponentViewModel.CantileverLeft) || e.PropertyName == nameof(ElementViewModel.DimensionComponentViewModel.CantileverRight))
-            //{
-            //    OnCanExecutedChanged();
-            //}
-            OnCanExecutedChanged();
-
+        { 
+            if (e.PropertyName == nameof(ElementViewModel.CanGenerateCharts))
+            {
+                OnCanExecutedChanged();
+            }
         }
 
         public override bool CanExecute(object? parameter)
         {
-            //return _elementViewModel.BeamPickerComponentViewModel.SelectedElement != null && _beamDimensionStore.BeamDimension.SpanOne != 0
-            //    && base.CanExecute(parameter);
-
-            //return _beamDimensionStore.BeamDimension.SpanOne != 0;
-            //return _beamPickerComponentViewModel.SelectedElement != null;
-
-            //return _elementViewModel.Text != null;
-
-            return true;
+            return _elementViewModel.CanGenerateCharts &&
+                base.CanExecute(parameter);
 
         }
         public override void Execute(object? parameter)
@@ -73,7 +64,6 @@ namespace BeamCalculatorOneSpanApp.Commands
                 listOfPointsM = _calculatorManager.CalculateMForces(element, beamData, loadPoint, loadDistributed, reactionsList);
                 _loadPointListStore.Save(listOfPointsT, listOfPointsM, reactionsList);
                 _elementViewModel.ResultViewComponentViewModel.UpdateValues();
-
 
             }
             catch (Exception)

@@ -39,7 +39,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
-            if (ListLoadPoint.Count != 0)
+            if (ListLoadPoint.Count > 1)
             {
                 ListLoadPoint.Remove(parameter);
             }

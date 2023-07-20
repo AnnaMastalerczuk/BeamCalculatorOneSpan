@@ -16,7 +16,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -51,11 +50,7 @@
         <Grid Grid.Row="3">
             <components:ResultViewComponent DataContext="{Binding ResultViewComponentViewModel}"/>
         </Grid>
-
-        <Grid Grid.Row="4">
-            <TextBox Text="{Binding Text}"></TextBox>
-        </Grid>
-
+        
     </Grid>
     </ScrollViewer>
 </UserControl>
