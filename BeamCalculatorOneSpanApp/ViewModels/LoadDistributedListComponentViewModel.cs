@@ -1,4 +1,5 @@
 ﻿using BeamCalculatorOneSpanApp.Models.BeamInfo;
+using BeamCalculatorOneSpanApp.Stores;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 {
     public class LoadDistributedListComponentViewModel : ViewModelBase
     {
+        private readonly BeamDimensionStore _beamDimensionStore;
+        public string BeamLength => (_beamDimensionStore?.BeamDimension.BeamLength).ToString() ?? "";
+
         private ObservableCollection<LoadDistributed> _listLoadDistributed;
         public ObservableCollection<LoadDistributed> ListLoadDistributed
         {
@@ -27,20 +31,36 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         }
 
         private DelegateCommand<LoadDistributed> _deleteLoadDistributedCommand;
+       
+
         public DelegateCommand<LoadDistributed> DeleteLoadDistributedCommand =>
            _deleteLoadDistributedCommand ?? (_deleteLoadDistributedCommand = new DelegateCommand<LoadDistributed>(ExecuteDeleteLoadDistributedCommand));
         void ExecuteDeleteLoadDistributedCommand(LoadDistributed parameter)
         {
-            ListLoadDistributed.Remove(parameter);
-
+            if (ListLoadDistributed.Count != 0)
+            {
+                ListLoadDistributed.Remove(parameter);
+            }
+            
         }
 
-        public LoadDistributedListComponentViewModel()
+        public LoadDistributedListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadDistributed = new ObservableCollection<LoadDistributed>()
-            {
+            ListLoadDistributed = new ObservableCollection<LoadDistributed>();
+            _beamDimensionStore = beamDimensionStore;
+            _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
+        }
 
-            };
+        //beamstore changed
+
+        protected override void Dispose()
+        {
+            _beamDimensionStore.BeamDimensionChanged -= BeamDimensionStore_BeamDimensionStoreChanged;
+            base.Dispose();
+        }
+        private void BeamDimensionStore_BeamDimensionStoreChanged()
+        {
+            OnPropertyChanged(nameof(BeamLength));
         }
     }
 }

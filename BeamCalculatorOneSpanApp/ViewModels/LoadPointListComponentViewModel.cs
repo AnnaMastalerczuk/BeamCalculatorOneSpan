@@ -8,14 +8,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BeamCalculatorOneSpanApp.ViewModels
 {
     public class LoadPointListComponentViewModel : ViewModelBase
     {
         private readonly BeamDimensionStore _beamDimensionStore;
-        public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString();
-
+        public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString() ?? "";
 
         private ObservableCollection<LoadPoint> _listLoadPoint;
         public ObservableCollection<LoadPoint> ListLoadPoint
@@ -39,18 +39,18 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
-            ListLoadPoint.Remove(parameter);
-
+            if (ListLoadPoint.Count != 0)
+            {
+                ListLoadPoint.Remove(parameter);
+            }
         }        
 
         //ctor
         public LoadPointListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadPoint = new ObservableCollection<LoadPoint>()
-            {
+            ListLoadPoint = new ObservableCollection<LoadPoint>();
 
-            };
-            this._beamDimensionStore = beamDimensionStore;
+            _beamDimensionStore = beamDimensionStore;
 
             _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
         }

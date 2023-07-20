@@ -25,6 +25,11 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         public List<Point> _listOfPointsMForces;
         public IEnumerable<Point> ListOfPointsMForces => _listOfPointsMForces;
 
+        // Reactions list
+        public Dictionary<string, double> _listOfReactions;
+        public double V1Value => _listOfReactions?.GetValueOrDefault("V1") ?? 0.0;
+        public double V2Value => _listOfReactions?.GetValueOrDefault("V2") ?? 0.0;
+
 
         // List of T points to chart
 
@@ -69,9 +74,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         // max acceptable forces
         public double MaxAcceptableTForce => _elementStore.Element?.MaxT ?? 0.0;
-
-        //V1 i V2 value
-
+        public double MaxAcceptableMForce => _elementStore.Element?.MaxM ?? 0.0;
 
 
         //ctor
@@ -88,7 +91,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             XPositionM = new ObservableCollection<double>();
             ChartValuesM = new ChartValues<double>();
 
-
         }
         protected override void Dispose()
         {
@@ -96,25 +98,33 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             base.Dispose();
         }
 
-        private void LoadPointListStore_LoadPointListSaved(List<Point> listT, List<Point> listM)
+        private void LoadPointListStore_LoadPointListSaved(List<Point> listT, List<Point> listM, Dictionary<string, double> reactionsList)
         {
             _listOfPointsTForces = listT;
             _listOfPointsMForces = listM;
+            _listOfReactions = reactionsList;
 
 
             OnPropertyChanged(nameof(ListOfPointsTForces));
             OnPropertyChanged(nameof(ListOfPointsMForces));
+            //OnPropertyChanged(nameof(ListOfReactions));
+            OnPropertyChanged(nameof(V1Value));
+            OnPropertyChanged(nameof(V2Value));
+
             OnPropertyChanged(nameof(MaxTForce));
             OnPropertyChanged(nameof(MinTForce));
             OnPropertyChanged(nameof(MaxMForce));
             OnPropertyChanged(nameof(MinMForce));
             OnPropertyChanged(nameof(MaxAcceptableTForce));
+            OnPropertyChanged(nameof(MaxAcceptableMForce));
         }
 
         public void UpdateValues()
         {
             XPositionT.Clear();
             ChartValuesT.Clear();
+            XPositionM.Clear();
+            ChartValuesM.Clear();
 
             UpdateTValues();
             UpdateMValues();
@@ -146,21 +156,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 XPositionM.Add(point.X);
             }
         }
-
-
-        // load chart
-        //public static ResultViewComponentViewModel LoadViewModel()
-        //{
-        //    ResultViewComponentViewModel viewModel = new ResultViewComponentViewModel(_loadPointListStore);
-        //    viewModel.Load();
-
-        //    return viewModel;
-        //}
-        //public void Load()
-        //{
-
-        //}
-
 
     }
 }

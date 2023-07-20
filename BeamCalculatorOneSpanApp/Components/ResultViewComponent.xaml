@@ -74,8 +74,8 @@
                 </WrapPanel>
             </StackPanel>
         </Grid>
-        
-        <Grid Grid.Row="1">
+
+        <Grid Grid.Row="1" Margin="10">
             <StackPanel>
                 <WrapPanel>
                     <TextBlock Text="Dopuszczalna siła poprzeczna [kN] : "></TextBlock>
@@ -88,7 +88,7 @@
             </StackPanel>
         </Grid>
 
-        <!--<Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="10">
             <StackPanel>
                 <WrapPanel>
                     <TextBlock Text="Reakcja V1 [kN] : "></TextBlock>
@@ -99,7 +99,7 @@
                     <TextBlock Text="{Binding V2Value}"/>
                 </WrapPanel>
             </StackPanel>
-        </Grid>-->
+        </Grid>
 
 
 

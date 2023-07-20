@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:BeamCalculatorOneSpanApp.Components"
              xmlns:validationrules="clr-namespace:BeamCalculatorOneSpanApp.ValidationRules" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="_window">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -20,7 +21,8 @@
         </Grid.ColumnDefinitions>
 
         <!--Beam distributed load-->
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="Obciążenia równomiernie rozłożone:"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="{Binding BeamLength}"/>
+        <!--<TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="Obciążenia równomiernie rozłożone:"/>-->
         
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Margin="10"
                   CanUserAddRows="True" AutoGenerateColumns="False"
@@ -59,19 +61,20 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Command="{Binding DataContext.DeleteLoadDistributedCommand,ElementName=_window}" CommandParameter="{Binding}">Usuń</Button>
+                            <Button Command="{Binding DataContext.DeleteLoadDistributedCommand,ElementName=_window}" 
+                                    CommandParameter="{Binding}">Usuń</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
 
-            <!--<DataGrid.RowValidationRules>
+            <DataGrid.RowValidationRules>
                 <validationrules:LoadDistributedValidationRule ValidationStep="UpdatedValue">
                     <validationrules:LoadDistributedValidationRule.BeamLengthWrapper>
                         <validationrules:BeamLengthWrapper BeamLength="{Binding Data.BeamLength,Source={StaticResource proxy}}" />
                     </validationrules:LoadDistributedValidationRule.BeamLengthWrapper>
                 </validationrules:LoadDistributedValidationRule>
-            </DataGrid.RowValidationRules>-->
+            </DataGrid.RowValidationRules>
 
             <DataGrid.RowValidationErrorTemplate>
                 <ControlTemplate>

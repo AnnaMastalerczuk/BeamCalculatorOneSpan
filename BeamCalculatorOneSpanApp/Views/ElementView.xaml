@@ -7,8 +7,12 @@
              xmlns:components="clr-namespace:BeamCalculatorOneSpanApp.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000" >
-    <Grid>
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        
+    <Grid HorizontalAlignment="Center" Margin="50">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -48,5 +52,10 @@
             <components:ResultViewComponent DataContext="{Binding ResultViewComponentViewModel}"/>
         </Grid>
 
+        <Grid Grid.Row="4">
+            <TextBox Text="{Binding Text}"></TextBox>
+        </Grid>
+
     </Grid>
+    </ScrollViewer>
 </UserControl>
