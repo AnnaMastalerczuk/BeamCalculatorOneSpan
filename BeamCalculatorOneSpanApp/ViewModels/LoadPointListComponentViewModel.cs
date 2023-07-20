@@ -39,11 +39,21 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
-            if (ListLoadPoint.Count > 1)
+            if (ListLoadPoint.Count > 0)
             {
                 ListLoadPoint.Remove(parameter);
             }
-        }        
+        }
+
+        private DelegateCommand _addNewLoadPointCommand;
+
+        public DelegateCommand AddNewLoadPointCommand =>
+            _addNewLoadPointCommand ?? (_addNewLoadPointCommand = new DelegateCommand(ExecuteAddNewLoadPointCommand));
+
+        void ExecuteAddNewLoadPointCommand()
+        {
+            ListLoadPoint.Add(new LoadPoint());
+        }
 
         //ctor
         public LoadPointListComponentViewModel(BeamDimensionStore beamDimensionStore)

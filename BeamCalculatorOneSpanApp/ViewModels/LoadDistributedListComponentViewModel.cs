@@ -36,10 +36,20 @@ namespace BeamCalculatorOneSpanApp.ViewModels
            _deleteLoadDistributedCommand ?? (_deleteLoadDistributedCommand = new DelegateCommand<LoadDistributed>(ExecuteDeleteLoadDistributedCommand));
         void ExecuteDeleteLoadDistributedCommand(LoadDistributed parameter)
         {
-            if (ListLoadDistributed.Count > 1)
+            if (ListLoadDistributed.Count > 0)
             {
                 ListLoadDistributed.Remove(parameter);
             }            
+        }
+
+        private DelegateCommand _addNewLoadDistributedCommand;
+
+        public DelegateCommand AddNewLoadDistributedCommand =>
+            _addNewLoadDistributedCommand ?? (_addNewLoadDistributedCommand = new DelegateCommand(ExecuteAddNewLoadDistributedCommand));
+
+        void ExecuteAddNewLoadDistributedCommand()
+        {
+            ListLoadDistributed.Add(new LoadDistributed());
         }
 
         public LoadDistributedListComponentViewModel(BeamDimensionStore beamDimensionStore)
