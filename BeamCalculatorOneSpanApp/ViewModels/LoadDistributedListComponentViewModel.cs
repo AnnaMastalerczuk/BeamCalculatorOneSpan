@@ -13,7 +13,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
     public class LoadDistributedListComponentViewModel : ViewModelBase
     {
         private readonly BeamDimensionStore _beamDimensionStore;
-        public string BeamLength => (_beamDimensionStore?.BeamDimension.BeamLength).ToString() ?? "";
+        public string BeamLength => (_beamDimensionStore.BeamDimension?.BeamLength).ToString() ?? "";
 
         private ObservableCollection<LoadDistributed> _listLoadDistributed;
         public ObservableCollection<LoadDistributed> ListLoadDistributed
@@ -36,10 +36,15 @@ namespace BeamCalculatorOneSpanApp.ViewModels
            _deleteLoadDistributedCommand ?? (_deleteLoadDistributedCommand = new DelegateCommand<LoadDistributed>(ExecuteDeleteLoadDistributedCommand));
         void ExecuteDeleteLoadDistributedCommand(LoadDistributed parameter)
         {
-            if (ListLoadDistributed.Count > 0)
+            if (ListLoadDistributed.Count == 1)
             {
                 ListLoadDistributed.Remove(parameter);
-            }            
+                ListLoadDistributed.Add(new LoadDistributed());
+            }
+            else
+            {
+                ListLoadDistributed.Remove(parameter);
+            }
         }
 
         private DelegateCommand _addNewLoadDistributedCommand;
@@ -54,7 +59,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         public LoadDistributedListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadDistributed = new ObservableCollection<LoadDistributed>();
+            ListLoadDistributed = new ObservableCollection<LoadDistributed>() { new LoadDistributed()};
             _beamDimensionStore = beamDimensionStore;
             _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
         }

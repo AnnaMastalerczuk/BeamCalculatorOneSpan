@@ -47,7 +47,8 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Left" Margin="10" Text="Podaj wymiary belki [mm]:" />
+        <TextBlock Style="{StaticResource SubTitleText}"  
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Left" Margin="10" Text="Podaj wymiary belki [mm]:" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Wspornik lewy (a)" />
         <TextBox Text="{Binding CantileverLeft, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="10" MinWidth="100"/>

@@ -21,7 +21,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -29,15 +28,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="10">
-                <TextBlock TextAlignment="Center">Wykres sił poprzecznych</TextBlock>
-                <lvc:CartesianChart Height="450" Width="450">
+                <TextBlock Style="{StaticResource SubTitleText}" 
+                           TextAlignment="Center">Wykres sił poprzecznych</TextBlock>
+                <lvc:CartesianChart Height="450" Width="550">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="T [kN]" Values="{Binding ChartValuesT}"/>
                     </lvc:CartesianChart.Series>
@@ -50,19 +50,12 @@
                                   Title="T [kN]"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
-                <WrapPanel>
-                    <TextBlock Text="Maksymalna wartość siły tnącej [kN] : "></TextBlock>
-                    <TextBlock Text="{Binding MaxTForce}"></TextBlock>
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Minimalna wartość siły tnącej [kN] : "></TextBlock>
-                    <TextBlock Text="{Binding MinTForce}"></TextBlock>
-                </WrapPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="10">
-                <TextBlock TextAlignment="Center">Wykres momentów zginających</TextBlock>
-                <lvc:CartesianChart Height="450" Width="450">
+                <TextBlock Style="{StaticResource SubTitleText}" 
+                           TextAlignment="Center">Wykres momentów zginających</TextBlock>
+                <lvc:CartesianChart Height="450" Width="550">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="M [kNm]" Values="{Binding ChartValuesM}"/>
                     </lvc:CartesianChart.Series>
@@ -73,49 +66,74 @@
                         <lvc:Axis LabelFormatter="{Binding Converter={StaticResource NumberFormatConverter}, ConverterParameter=2}" Title="M [kNm]"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
-                <WrapPanel>
-                    <TextBlock Text="Maksymalna wartość momentu zginającego [kNm] : "></TextBlock>
-                    <TextBlock Text="{Binding MaxMForce}"></TextBlock>
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Minimalna wartość momentu zginającego [kNm] : "></TextBlock>
-                    <TextBlock Text="{Binding MinMForce}"></TextBlock>
-                </WrapPanel>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="10">
-            <StackPanel>
-                <WrapPanel>
-                    <TextBlock Text="Dopuszczalna siła poprzeczna [kN] : "></TextBlock>
-                    <TextBlock Text="{Binding MaxAcceptableTForce}"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Dopuszczalny moment zginający [kNm] : "></TextBlock>
-                    <TextBlock Text="{Binding MaxAcceptableMForce}"/>
-                </WrapPanel>
-            </StackPanel>
-        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="2" Margin="10">
-            <StackPanel>
-                <WrapPanel>
-                    <TextBlock Text="Reakcja V1 [kN] : "></TextBlock>
-                    <TextBlock Text="{Binding V1Value}"/>              
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Reakcja V2 [kN] : "></TextBlock>
-                    <TextBlock Text="{Binding V2Value}"/>
-                </WrapPanel>
-            </StackPanel>
-        </Grid>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>-->
 
-        <Grid Grid.Row="4">
-            <DataGrid ItemsSource="{Binding Path=ListOfPointsTForces}" AutoGenerateColumns="True">
-            </DataGrid>
-        </Grid>
+            <TextBlock Style="{StaticResource SubTitleText}" 
+                       Margin="10" Grid.Row="0" Grid.Column="0" Text="Wyniki: "/>
 
-        <ComboBox Grid.Row="5" Grid.Column="0" ItemsSource="{Binding XPositionT}"/>
+            <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+                <StackPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Maksymalna wartość siły tnącej [kN] : "></TextBlock>
+                        <TextBlock Text="{Binding MaxTForce}"></TextBlock>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Minimalna wartość siły tnącej [kN] : "></TextBlock>
+                        <TextBlock Text="{Binding MinTForce}"></TextBlock>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Maksymalna wartość momentu zginającego [kNm] : "></TextBlock>
+                        <TextBlock Text="{Binding MaxMForce}"></TextBlock>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Minimalna wartość momentu zginającego [kNm] : "></TextBlock>
+                        <TextBlock Text="{Binding MinMForce}"></TextBlock>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0" Margin="10">
+                <StackPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Dopuszczalna siła poprzeczna [kN] : "></TextBlock>
+                        <TextBlock Text="{Binding MaxAcceptableTForce}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Dopuszczalny moment zginający [kNm] : "></TextBlock>
+                        <TextBlock Text="{Binding MaxAcceptableMForce}"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0" Margin="10">
+                <StackPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Reakcja V1 [kN] : "></TextBlock>
+                        <TextBlock Text="{Binding V1Value}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Reakcja V2 [kN] : "></TextBlock>
+                        <TextBlock Text="{Binding V2Value}"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="#FCA311" BorderThickness="10"/>
 
     </Grid>
 </UserControl>

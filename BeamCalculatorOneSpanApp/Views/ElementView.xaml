@@ -47,7 +47,8 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <Button x:Name="GenerateChartsButton" Command="{Binding GenerateChartsCommand}" Margin="20">Generuj wykresy</Button>
+                <Button Style="{StaticResource OrangeButtonStyle}" Padding="10"
+                        x:Name="GenerateChartsButton" Command="{Binding GenerateChartsCommand}" Margin="20">Generuj wykresy</Button>
         </Grid>
 
         <Grid Grid.Row="3">

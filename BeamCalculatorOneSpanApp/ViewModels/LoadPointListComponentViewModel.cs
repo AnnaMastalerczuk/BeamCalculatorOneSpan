@@ -38,21 +38,42 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         private DelegateCommand<LoadPoint> _deleteLoadPointCommand;
         public DelegateCommand<LoadPoint> DeleteLoadPointCommand =>
-            _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand, CanExecuteDeleteLoadPointCommand));
+            _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
             //if (ListLoadPoint.Count > 0)
             //{
             //    ListLoadPoint.Remove(parameter);
             //}
+            //if (parameter.LoadValue != null)
+            //{
+            //    MessageBox.Show(parameter.LoadValue.ToString());
+            //} else
+            //{
+            //    MessageBox.Show("null");
+            //}
+            //ListLoadPoint.Remove(parameter);
+            //ListLoadPoint.Add(new LoadPoint());
+            if (ListLoadPoint.Count == 1)
+            {
+                ListLoadPoint.Remove(parameter);
+                ListLoadPoint.Add(new LoadPoint());
+            } else
+            {
+                ListLoadPoint.Remove(parameter);
+            }
 
-            ListLoadPoint.Remove(parameter);
 
-        }
-        bool CanExecuteDeleteLoadPointCommand(LoadPoint parameter)
-        {
-            //return parameter != null && ListLoadPoint.Contains(parameter);
-            return parameter != null;
+            //if (parameter != null && parameter.LoadValue != 0)
+            //{
+            //    ListLoadPoint.Remove(parameter);
+            //} else
+            //{
+            //    MessageBox.Show("Nie można usunąć wiersza");
+            //}
+
+            //ListLoadPoint.Remove(parameter);
+
         }
 
         private DelegateCommand _addNewLoadPointCommand;
@@ -69,13 +90,13 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         //ctor
         public LoadPointListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadPoint = new ObservableCollection<LoadPoint>();
+            ListLoadPoint = new ObservableCollection<LoadPoint>() { new LoadPoint()};
 
             _beamDimensionStore = beamDimensionStore;
 
             _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
 
-            _deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand, CanExecuteDeleteLoadPointCommand);
+            _deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand);
 
         }
 

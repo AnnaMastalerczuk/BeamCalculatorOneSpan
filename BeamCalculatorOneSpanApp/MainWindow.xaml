@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BeamCalculatorOneSpanApp"
         xmlns:views="clr-namespace:BeamCalculatorOneSpanApp.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1350">
+        Title="MainWindow" Height="800" Width="1350" Background="#FFFFFF">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -15,8 +15,19 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="1" TextAlignment="Center" FontSize="40"  Text="Kalkulator belek prostych"></TextBox>
-        <TextBox Grid.Row="2" TextAlignment="Center" Text="Elementy z asortymentu deskowań systemowych"></TextBox>
+        <TextBlock Style="{StaticResource TitleText}" 
+                   Grid.Row="1" TextAlignment="Center" FontSize="40"
+                   Padding="0 0 0 10"
+                   Text="Kalkulator belek prostych"/>
+        <Grid Grid.Row="2">
+            <Border BorderBrush="#FCA311" BorderThickness="0 0 0 10">
+                <TextBlock Style="{StaticResource TitleText}" 
+                           Grid.Row="2" TextAlignment="Center"
+                           Padding="0 0 0 20"
+                            Text="Elementy z asortymentu deskowań systemowych"/>
+            </Border>
+        </Grid>
+
         <Grid Grid.Row="3">
             <views:ElementView/>
         </Grid>

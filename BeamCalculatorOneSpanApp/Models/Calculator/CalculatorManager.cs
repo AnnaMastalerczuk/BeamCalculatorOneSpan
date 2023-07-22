@@ -10,16 +10,13 @@ namespace BeamCalculator.Models.Calculator
 {
     public class CalculatorManager
     {
-        private CalculateForcesOneSpan _calculateForcesOneSpan;
         private CalculateMForcesOneSpan _calculateMForcesOneSpan;
         private CalculateTForcesOneSpan _calculateTForcesOneSpan;
 
         public CalculatorManager()
         {
-            //_calculateForcesOneSpan = new CalculateForcesOneSpan();
             _calculateMForcesOneSpan = new CalculateMForcesOneSpan();
             _calculateTForcesOneSpan = new CalculateTForcesOneSpan();
-
         }
 
         public List<Point> CalculateTForces(Element element, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed, Dictionary<string, double> reactionsList)

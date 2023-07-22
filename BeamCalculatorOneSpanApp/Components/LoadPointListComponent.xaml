@@ -22,12 +22,16 @@
 
         <!--Beam point load-->
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="Obciążenia punktowe:"/>
+        <TextBlock Style="{StaticResource SubTitleText}" 
+                   Grid.Row="0" Grid.Column="0" Margin="10" Text="Obciążenia punktowe:"/>
 
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Margin="10"
-                  CanUserAddRows="True" AutoGenerateColumns="False"
+                  CanUserAddRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding Path=ListLoadPoint, ValidatesOnDataErrors=True,Mode=TwoWay}"
-                  AlternatingRowBackground="Gray">
+                  AlternatingRowBackground="Gray"
+                  Style="{StaticResource DataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridTextCellStyle}" >
 
             <DataGrid.Resources>
                 <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
@@ -59,7 +63,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button 
+                            <Button Style="{StaticResource OrangeButtonStyle}" 
                                 Command="{Binding DataContext.DeleteLoadPointCommand,ElementName=_window}" 
                                 CommandParameter="{Binding}">Usuń</Button>
                         </DataTemplate>
@@ -68,7 +72,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Command="{Binding DataContext.AddNewLoadPointCommand,ElementName=_window}" 
+                            <Button Style="{StaticResource OrangeButtonStyle}"
+                                    Command="{Binding DataContext.AddNewLoadPointCommand,ElementName=_window}" 
                                     CommandParameter="{Binding}">Dodaj wiersz</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
