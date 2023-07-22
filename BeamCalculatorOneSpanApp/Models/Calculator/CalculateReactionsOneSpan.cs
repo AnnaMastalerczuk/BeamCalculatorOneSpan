@@ -45,8 +45,6 @@ namespace BeamCalculator.Models.Calculator
         private double calculateV2(double loadDistributedSumMoment, double loadPointSumMoment, BeamDimension beamData)
         {
             double V2 = 0;
-            int number = 1; 
-            double spanLength = number / 1000;
             V2 = ((loadDistributedSumMoment + loadPointSumMoment) / beamData.SpanOne) * 1000;
 
             return V2;
@@ -55,7 +53,6 @@ namespace BeamCalculator.Models.Calculator
         private double calculateV1(double V2, double loadDistributedSum, double loadPointSum)
         {
             double V1 = 0;
-
             V1 = +loadDistributedSum + loadPointSum - V2;
 
             return V1;

@@ -13,11 +13,12 @@ namespace BeamCalculatorOneSpanApp.ViewModels
     public class BeamPickerComponentViewModel : ViewModelBase
     {
         private ElementStore _elementStore;
+        private FileLoader _fileLoader;
         private ObservableCollection<Element> _listOfElements { get; set; }
 
         public BeamPickerComponentViewModel(Stores.ElementStore elementStore) 
         {
-            FileLoader _fileLoader = new FileLoader();
+            _fileLoader = new FileLoader();
             _listOfElements = new ObservableCollection<Element>(_fileLoader.getElementsList());
 
             _elementStore = elementStore;

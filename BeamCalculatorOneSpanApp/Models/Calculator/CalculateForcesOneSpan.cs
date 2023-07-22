@@ -19,13 +19,13 @@ namespace BeamCalculator.Models.Calculator
 
         public List<Point> CalculateTForces(Dictionary<string, double> reactionsList, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed)
         {
-            Length = beamData.CantileverRight + beamData.CantileverLeft + beamData.SpanOne;
+            Length = beamData.BeamLength;
             return CreateListOfPointsT(reactionsList, beamData, loadPoint, loadDistributed);
         }
 
         public List<Point> CalculateMForces(Dictionary<string, double> reactionsList, BeamDimension beamData, List<LoadPoint> loadPoint, List<LoadDistributed> loadDistributed)
         {
-            Length = beamData.CantileverRight + beamData.CantileverLeft + beamData.SpanOne;
+            Length = beamData.BeamLength;
             return CreateListOfPointsM(reactionsList, beamData, loadPoint, loadDistributed);
         }
 
@@ -33,11 +33,11 @@ namespace BeamCalculator.Models.Calculator
         {
             List<Point> ListOfPointsT = new List<Point>();
 
-            for (double i = 0; i <= Length; i += 10)
+            for (double i = 0; i <= Length; i += 100)
             {
                 double value = CalculateV1Value(i, reactionsList, beamData) + CalculateV2Value(i, reactionsList, beamData)
                     - CalculateQValue(i, loadDistributed) - CalculatePValue(i, loadPoint);
-                Point point = new Point(i, Math.Round(value,2));
+                Point point = new Point(Math.Round(i/1000,2), Math.Round(value,2));
                 ListOfPointsT.Add(point);
             }
 
@@ -49,11 +49,11 @@ namespace BeamCalculator.Models.Calculator
         {
             List<Point> ListOfPointsM = new List<Point>();
 
-            for (double i = 0; i <= Length; i += 10)
+            for (double i = 0; i <= Length; i += 100)
             {
                 double value = -(CalculateV1MomentValue(i, reactionsList, beamData) + CalculateV2MomentValue(i, reactionsList, beamData)
                     - CalculatePMomentValue(i, loadPoint) - CalculateQMomentValue(i, loadDistributed, beamData));
-                Point point = new Point(i, Math.Round(value,2));
+                Point point = new Point(Math.Round(i / 1000, 2), Math.Round(value,2));
                 ListOfPointsM.Add(point);
             }
 

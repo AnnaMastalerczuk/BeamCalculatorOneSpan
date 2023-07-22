@@ -46,7 +46,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 OnPropertyChanged(nameof(ChartValuesT));
             }
         }
-        public ObservableCollection<double> XPositionT { get; set; }
+        public ObservableCollection<double> XPositionT { get; }
 
         // List of M points to chart
 
@@ -63,7 +63,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
                 OnPropertyChanged(nameof(ChartValuesM));
             }
         }
-        public ObservableCollection<double> XPositionM { get; set; }
+        public ObservableCollection<double> XPositionM { get; }
 
         //max forces
 

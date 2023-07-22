@@ -1,4 +1,5 @@
 ﻿using BeamCalculatorOneSpanApp.Models.BeamInfo;
+using BeamCalculatorOneSpanApp.Models.Calculator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,14 @@ namespace BeamCalculator.Models.Calculator
     public class CalculatorManager
     {
         private CalculateForcesOneSpan _calculateForcesOneSpan;
+        private CalculateMForcesOneSpan _calculateMForcesOneSpan;
+        private CalculateTForcesOneSpan _calculateTForcesOneSpan;
 
         public CalculatorManager()
         {
-            _calculateForcesOneSpan = new CalculateForcesOneSpan();
+            //_calculateForcesOneSpan = new CalculateForcesOneSpan();
+            _calculateMForcesOneSpan = new CalculateMForcesOneSpan();
+            _calculateTForcesOneSpan = new CalculateTForcesOneSpan();
 
         }
 
@@ -21,7 +26,7 @@ namespace BeamCalculator.Models.Calculator
         {
             List<Point> listOfPointsT = new List<Point>();
 
-            return listOfPointsT = _calculateForcesOneSpan.CalculateTForces(reactionsList, beamData, loadPoint, loadDistributed);
+            return listOfPointsT = _calculateTForcesOneSpan.CalculateTForces(reactionsList, beamData, loadPoint, loadDistributed);
 
         }
 
@@ -29,7 +34,7 @@ namespace BeamCalculator.Models.Calculator
         {
             List<Point> listOfPointsM = new List<Point>();
 
-            return listOfPointsM = _calculateForcesOneSpan.CalculateMForces(reactionsList, beamData, loadPoint, loadDistributed);
+            return listOfPointsM = _calculateMForcesOneSpan.CalculateMForces(reactionsList, beamData, loadPoint, loadDistributed);
 
         }
 

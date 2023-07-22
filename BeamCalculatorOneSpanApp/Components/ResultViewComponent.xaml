@@ -19,6 +19,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -39,10 +42,12 @@
                         <lvc:LineSeries Title="T [kN]" Values="{Binding ChartValuesT}"/>
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="x [m]" Labels="{Binding XPositionT}"/>
+                        <lvc:Axis 
+                            Title="x [cm]" Labels="{Binding XPositionT}"/>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis LabelFormatter="{Binding Converter={StaticResource NumberFormatConverter}, ConverterParameter=2}" Title="T [kN]"/>
+                        <lvc:Axis LabelFormatter="{Binding Converter={StaticResource NumberFormatConverter}, ConverterParameter=2}" 
+                                  Title="T [kN]"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
                 <WrapPanel>
@@ -62,7 +67,7 @@
                         <lvc:LineSeries Title="M [kNm]" Values="{Binding ChartValuesM}"/>
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="x [m]" Labels="{Binding XPositionM}"/>
+                        <lvc:Axis Title="x [cm]" Labels="{Binding XPositionM}"/>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis LabelFormatter="{Binding Converter={StaticResource NumberFormatConverter}, ConverterParameter=2}" Title="M [kNm]"/>
@@ -104,6 +109,13 @@
                 </WrapPanel>
             </StackPanel>
         </Grid>
+
+        <Grid Grid.Row="4">
+            <DataGrid ItemsSource="{Binding Path=ListOfPointsTForces}" AutoGenerateColumns="True">
+            </DataGrid>
+        </Grid>
+
+        <ComboBox Grid.Row="5" Grid.Column="0" ItemsSource="{Binding XPositionT}"/>
 
     </Grid>
 </UserControl>

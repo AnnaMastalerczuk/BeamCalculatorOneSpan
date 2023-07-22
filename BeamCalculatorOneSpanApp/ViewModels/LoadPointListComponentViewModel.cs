@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace BeamCalculatorOneSpanApp.ViewModels
 {
@@ -37,13 +38,21 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         private DelegateCommand<LoadPoint> _deleteLoadPointCommand;
         public DelegateCommand<LoadPoint> DeleteLoadPointCommand =>
-            _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
+            _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand, CanExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
-            if (ListLoadPoint.Count > 0)
-            {
-                ListLoadPoint.Remove(parameter);
-            }
+            //if (ListLoadPoint.Count > 0)
+            //{
+            //    ListLoadPoint.Remove(parameter);
+            //}
+
+            ListLoadPoint.Remove(parameter);
+
+        }
+        bool CanExecuteDeleteLoadPointCommand(LoadPoint parameter)
+        {
+            //return parameter != null && ListLoadPoint.Contains(parameter);
+            return parameter != null;
         }
 
         private DelegateCommand _addNewLoadPointCommand;
@@ -65,6 +74,9 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _beamDimensionStore = beamDimensionStore;
 
             _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
+
+            _deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand, CanExecuteDeleteLoadPointCommand);
+
         }
 
         //beamstore changed
