@@ -40,6 +40,7 @@
                 <lvc:CartesianChart Height="450" Width="550">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="T [kN]" Values="{Binding ChartValuesT}"/>
+                        <lvc:LineSeries Title="Tmin [kN]" Values="{Binding SeriesT}"/>
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis 

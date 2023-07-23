@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using LiveCharts;
 using System.Collections.ObjectModel;
 using BeamCalculatorOneSpanApp.Models.BeamInfo;
+using System.Windows.Media;
+using LiveCharts.Wpf;
 
 namespace BeamCalculatorOneSpanApp.ViewModels
 {
@@ -16,6 +18,9 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         private readonly LoadPointListStore _loadPointListStore;
         private readonly ElementStore _elementStore;
+
+        //series for beam info
+        public SeriesCollection SeriesT { get; }
 
         // T forces list of points
         public List<Point> _listOfPointsTForces;
@@ -91,6 +96,9 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             XPositionM = new ObservableCollection<double>();
             ChartValuesM = new ChartValues<double>();
 
+            SeriesT = new SeriesCollection();
+ 
+
         }
         protected override void Dispose()
         {
@@ -124,10 +132,24 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             ChartValuesT.Clear();
             XPositionM.Clear();
             ChartValuesM.Clear();
+            SeriesT.Clear();
 
             UpdateTValues();
             UpdateMValues();
+            UpdateSeriesCollection();
 
+            
+
+        }
+
+        private void UpdateSeriesCollection()
+        {
+            LineSeries lineSerie = new LineSeries
+            {
+                Values = new ChartValues<double> { 5 }
+            };
+
+            SeriesT.Add(lineSerie);
         }
 
         private void UpdateTValues()
