@@ -42,19 +42,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             _deleteLoadPointCommand ?? (_deleteLoadPointCommand = new DelegateCommand<LoadPoint>(ExecuteDeleteLoadPointCommand));
         void ExecuteDeleteLoadPointCommand(LoadPoint parameter)
         {
-            //if (ListLoadPoint.Count > 0)
-            //{
-            //    ListLoadPoint.Remove(parameter);
-            //}
-            //if (parameter.LoadValue != null)
-            //{
-            //    MessageBox.Show(parameter.LoadValue.ToString());
-            //} else
-            //{
-            //    MessageBox.Show("null");
-            //}
-            //ListLoadPoint.Remove(parameter);
-            //ListLoadPoint.Add(new LoadPoint());
+
             if (ListLoadPoint.Count == 1)
             {
                 ListLoadPoint.Remove(parameter);
@@ -63,17 +51,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             {
                 ListLoadPoint.Remove(parameter);
             }
-
-
-            //if (parameter != null && parameter.LoadValue != 0)
-            //{
-            //    ListLoadPoint.Remove(parameter);
-            //} else
-            //{
-            //    MessageBox.Show("Nie można usunąć wiersza");
-            //}
-
-            //ListLoadPoint.Remove(parameter);
 
         }
 

@@ -14,7 +14,6 @@ namespace BeamCalculatorOneSpanApp.ValidationRules
          nameof(BeamLength),
          typeof(int),
          typeof(BeamLengthWrapper),
-         //new FrameworkPropertyMetadata(int.MaxValue));
          new PropertyMetadata(default(int)));
 
         public int BeamLength

@@ -40,7 +40,6 @@
                 <lvc:CartesianChart Height="450" Width="550">
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries Title="T [kN]" Values="{Binding ChartValuesT}"/>
-                        <lvc:LineSeries Title="Tmin [kN]" Values="{Binding SeriesT}"/>
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis 
@@ -77,12 +76,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-
-            <!--<Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>-->
 
             <TextBlock Style="{StaticResource SubTitleText}" 
                        Margin="10" Grid.Row="0" Grid.Column="0" Text="Wyniki: "/>

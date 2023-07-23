@@ -27,7 +27,6 @@ namespace BeamCalculatorOneSpanApp.ViewModels
             HasBeamLength;
       
 
-
         private bool _hasSelectedElement;
 
         public bool HasSelectedElement
