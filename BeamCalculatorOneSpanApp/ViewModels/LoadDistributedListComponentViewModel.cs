@@ -59,7 +59,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
 
         public LoadDistributedListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadDistributed = new ObservableCollection<LoadDistributed>() { new LoadDistributed()};
+            ListLoadDistributed = new ObservableCollection<LoadDistributed>();
             _beamDimensionStore = beamDimensionStore;
             _beamDimensionStore.BeamDimensionChanged += BeamDimensionStore_BeamDimensionStoreChanged;
         }

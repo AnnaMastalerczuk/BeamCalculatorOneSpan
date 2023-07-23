@@ -1,4 +1,5 @@
-﻿using BeamCalculatorOneSpanApp.Models.BeamInfo;
+﻿using BeamCalculatorOneSpanApp.Components;
+using BeamCalculatorOneSpanApp.Models.BeamInfo;
 using BeamCalculatorOneSpanApp.Stores;
 using Prism.Commands;
 using System;
@@ -90,7 +91,7 @@ namespace BeamCalculatorOneSpanApp.ViewModels
         //ctor
         public LoadPointListComponentViewModel(BeamDimensionStore beamDimensionStore)
         {
-            ListLoadPoint = new ObservableCollection<LoadPoint>() { new LoadPoint()};
+            ListLoadPoint = new ObservableCollection<LoadPoint>();
 
             _beamDimensionStore = beamDimensionStore;
 

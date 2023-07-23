@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BeamCalculatorOneSpanApp.Components"
+             xmlns:help="clr-namespace:BeamCalculatorOneSpanApp.Help"
              xmlns:validationrules="clr-namespace:BeamCalculatorOneSpanApp.ValidationRules" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="_window">
+    <UserControl.Resources>
+        <!-- Zasób zawierający IsNamedObjectVisibilityConverter -->
+        <help:IsNamedObjectVisibilityConverter x:Key="IsNamedObjectVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,7 +31,7 @@
                    Grid.Row="0" Grid.Column="0" Margin="10" Text="Obciążenia równomiernie rozłożone:"/>
         
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Margin="10"
-                  CanUserAddRows="False" AutoGenerateColumns="False"
+                  CanUserAddRows="True" AutoGenerateColumns="False"
                   ItemsSource="{Binding Path=ListLoadDistributed,ValidatesOnDataErrors=True,Mode=TwoWay}"
                   AlternatingRowBackground="Gray"
                   Style="{StaticResource DataGridStyle}"
@@ -50,22 +55,23 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pozycja początkowa (aqi) [mm]" 
+                <DataGridTextColumn Header="Poz. początkowa (aqi) [mm]" 
                                     Binding="{Binding Path=StartPosition,
                                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>
-                <DataGridTextColumn Header="Pozycja końcowa (aqi+bi) [mm]" 
+                <DataGridTextColumn Header="Poz. końcowa (aqi+bi) [mm]" 
                                     Binding="{Binding Path=EndPosition,
                                     ValidatesOnDataErrors=True,Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>
-                <DataGridTextColumn Header="Obciążenie równomiernie rozłożone (qi) [kN/m]" 
+                <DataGridTextColumn Header="Obc. równomiernie rozłożone (qi) [kN/m]" 
                                     Binding="{Binding Path=LoadValue,
                                     ValidatesOnDataErrors=True, Mode=TwoWay}"
                                     EditingElementStyle="{StaticResource errorStyle}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource OrangeButtonStyle}" 
+                            <Button Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=DataContext, Converter={StaticResource IsNamedObjectVisibilityConverter}}"
+                                Style="{StaticResource OrangeButtonStyle}" 
                                     Command="{Binding DataContext.DeleteLoadDistributedCommand,ElementName=_window}" 
                                     CommandParameter="{Binding}">Usuń</Button>
                         </DataTemplate>
@@ -74,7 +80,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource OrangeButtonStyle}" 
+                            <Button Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=DataContext, Converter={StaticResource IsNamedObjectVisibilityConverter}}"
+                                Style="{StaticResource OrangeButtonStyle}" 
                                     Command="{Binding DataContext.AddNewLoadDistributedCommand,ElementName=_window}" 
                                     CommandParameter="{Binding}">Dodaj wiersz</Button>
                         </DataTemplate>
